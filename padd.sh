@@ -1033,7 +1033,7 @@ StartupRoutine(){
     if [ -e "piHoleVersion" ]; then
       rm -f piHoleVersion
       # echo -ne " [■■■·······]  30%\\r"
-    else
+    # else
       # echo -ne " [■■■·······]  30%\\r"
     fi
 
@@ -1068,7 +1068,7 @@ StartupRoutine(){
     if [ -e "piHoleVersion" ]; then
       # echo "  - Found and deleted."
       rm -f piHoleVersion
-    else
+    # else
       # echo "  - Not found."
     fi
 
@@ -1089,11 +1089,11 @@ StartupRoutine(){
     # echo -e "${padd_logo_retro_1}"
     # echo -e "${padd_logo_retro_2}Pi-hole® Ad Detection Display"
     # echo -e "${padd_logo_retro_3}A client for Pi-hole\\n"
-    if [ "$1" = "tiny" ]; then
+    # if [ "$1" = "tiny" ]; then
       # echo "START UP ============================================"
-    else
+    # else
       # echo "START UP ==================================================="
-    fi
+    # fi
 
     # echo -e "- Checking internet connection..."
     CheckConnectivity "$1"
@@ -1108,7 +1108,7 @@ StartupRoutine(){
     if [ -e "piHoleVersion" ]; then
       # echo "  - PADD version file found... deleting."
       rm -f piHoleVersion
-    else
+    # else
       # echo "  - PADD version file not found."
     fi
 
