@@ -1017,129 +1017,129 @@ OutputJSON() {
 
 StartupRoutine(){
   if [ "$1" = "pico" ] || [ "$1" = "nano" ] || [ "$1" = "micro" ]; then
-    PrintLogo "$1"
-    echo -e "START-UP ==========="
-    echo -e "Checking connection."
+    # PrintLogo "$1"
+    # echo -e "START-UP ==========="
+    # echo -e "Checking connection."
     CheckConnectivity "$1"
-    echo -e "Starting PADD..."
+    # echo -e "Starting PADD..."
 
     # Get PID of PADD
     pid=$$
-    echo -ne " [■·········]  10%\\r"
-    echo ${pid} > ./PADD.pid
+    # echo -ne " [■·········]  10%\\r"
+    # echo ${pid} > ./PADD.pid
 
     # Check for updates
-    echo -ne " [■■········]  20%\\r"
+    # echo -ne " [■■········]  20%\\r"
     if [ -e "piHoleVersion" ]; then
       rm -f piHoleVersion
-      echo -ne " [■■■·······]  30%\\r"
+      # echo -ne " [■■■·······]  30%\\r"
     else
-      echo -ne " [■■■·······]  30%\\r"
+      # echo -ne " [■■■·······]  30%\\r"
     fi
 
     # Get our information for the first time
-    echo -ne " [■■■■······]  40%\\r"
+    # echo -ne " [■■■■······]  40%\\r"
     GetSystemInformation "$1"
-    echo -ne " [■■■■■·····]  50%\\r"
+    # echo -ne " [■■■■■·····]  50%\\r"
     GetSummaryInformation "$1"
-    echo -ne " [■■■■■■····]  60%\\r"
+    # echo -ne " [■■■■■■····]  60%\\r"
     GetPiholeInformation "$1"
-    echo -ne " [■■■■■■■···]  70%\\r"
+    # echo -ne " [■■■■■■■···]  70%\\r"
     GetNetworkInformation "$1"
-    echo -ne " [■■■■■■■■··]  80%\\r"
+    # echo -ne " [■■■■■■■■··]  80%\\r"
     GetVersionInformation "$1"
-    echo -ne " [■■■■■■■■■·]  90%\\r"
-    echo -ne " [■■■■■■■■■■] 100%\\n"
+    # echo -ne " [■■■■■■■■■·]  90%\\r"
+    # echo -ne " [■■■■■■■■■■] 100%\\n"
 
   elif [ "$1" = "mini" ]; then
-    PrintLogo "$1"
-    echo "START UP ====================="
-    echo "Checking connectivity."
+    # PrintLogo "$1"
+    # echo "START UP ====================="
+    # echo "Checking connectivity."
     CheckConnectivity "$1"
 
-    echo "Starting PADD."
+    # echo "Starting PADD."
     # Get PID of PADD
     pid=$$
-    echo "- Writing PID (${pid}) to file."
-    echo ${pid} > ./PADD.pid
+    # echo "- Writing PID (${pid}) to file."
+    # echo ${pid} > ./PADD.pid
 
     # Check for updates
-    echo "- Checking for version file."
+    # echo "- Checking for version file."
     if [ -e "piHoleVersion" ]; then
-      echo "  - Found and deleted."
+      # echo "  - Found and deleted."
       rm -f piHoleVersion
     else
-      echo "  - Not found."
+      # echo "  - Not found."
     fi
 
     # Get our information for the first time
-    echo "- Gathering system info."
+    # echo "- Gathering system info."
     GetSystemInformation "mini"
-    echo "- Gathering Pi-hole info."
+    # echo "- Gathering Pi-hole info."
     GetSummaryInformation "mini"
-    echo "- Gathering network info."
+    # echo "- Gathering network info."
     GetNetworkInformation "mini"
-    echo "- Gathering version info."
+    # echo "- Gathering version info."
     GetVersionInformation "mini"
-    echo "  - Core v$core_version, Web v$web_version"
-    echo "  - FTL v$ftl_version, PADD $padd_version"
-    echo "  - $version_status"
+    # echo "  - Core v$core_version, Web v$web_version"
+    # echo "  - FTL v$ftl_version, PADD $padd_version"
+    # echo "  - $version_status"
 
   else
-    echo -e "${padd_logo_retro_1}"
-    echo -e "${padd_logo_retro_2}Pi-hole® Ad Detection Display"
-    echo -e "${padd_logo_retro_3}A client for Pi-hole\\n"
+    # echo -e "${padd_logo_retro_1}"
+    # echo -e "${padd_logo_retro_2}Pi-hole® Ad Detection Display"
+    # echo -e "${padd_logo_retro_3}A client for Pi-hole\\n"
     if [ "$1" = "tiny" ]; then
-      echo "START UP ============================================"
+      # echo "START UP ============================================"
     else
-      echo "START UP ==================================================="
+      # echo "START UP ==================================================="
     fi
 
-    echo -e "- Checking internet connection..."
+    # echo -e "- Checking internet connection..."
     CheckConnectivity "$1"
 
     # Get PID of PADD
     pid=$$
-    echo "- Writing PID (${pid}) to file..."
-    echo ${pid} > ./PADD.pid
+    # echo "- Writing PID (${pid}) to file..."
+    # echo ${pid} > ./PADD.pid
 
     # Check for updates
-    echo "- Checking for PADD version file..."
+    # echo "- Checking for PADD version file..."
     if [ -e "piHoleVersion" ]; then
-      echo "  - PADD version file found... deleting."
+      # echo "  - PADD version file found... deleting."
       rm -f piHoleVersion
     else
-      echo "  - PADD version file not found."
+      # echo "  - PADD version file not found."
     fi
 
     # Get our information for the first time
-    echo "- Gathering system information..."
+    # echo "- Gathering system information..."
     GetSystemInformation "$1"
-    echo "- Gathering Pi-hole information..."
+    # echo "- Gathering Pi-hole information..."
     GetSummaryInformation "$1"
     GetPiholeInformation "$1"
-    echo "- Gathering network information..."
+    # echo "- Gathering network information..."
     GetNetworkInformation "$1"
-    echo "- Gathering version information..."
+    # echo "- Gathering version information..."
     GetVersionInformation "$1"
-    echo "  - Pi-hole Core v$core_version"
-    echo "  - Web Admin v$web_version"
-    echo "  - FTL v$ftl_version"
-    echo "  - PADD $padd_version"
-    echo "  - $version_status"
+    # echo "  - Pi-hole Core v$core_version"
+    # echo "  - Web Admin v$web_version"
+    # echo "  - FTL v$ftl_version"
+    # echo "  - PADD $padd_version"
+    # echo "  - $version_status"
   fi
 
-  printf "%s" "- Starting in "
+  # printf "%s" "- Starting in "
 
-  for i in 3 2 1
-  do
-    printf "%s..." "$i"
-    sleep 1
-  done
+  # for i in 3 2 1
+  # do
+  #  printf "%s..." "$i"
+  #  sleep 1
+  # done
 }
 
 NormalPADD() {
-  for (( ; ; )); do
+  # for (( ; ; )); do
 
     console_width=$(tput cols)
     console_height=$(tput lines)
@@ -1175,8 +1175,8 @@ NormalPADD() {
     GetSystemInformation ${padd_size}
 
     # Sleep for 5 seconds
-    sleep 5
-  done
+    # sleep 5
+  # done
 }
 
 DisplayHelp() {
